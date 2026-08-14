@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Store-item-week analytical fact",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["upc", "store", "week", "move", "unit_price", "revenue", "gross_margin_rate", "sale", "promotion_observed"],
+  "properties": {
+    "upc": {"type": ["integer", "string"]},
+    "store": {"type": "integer"},
+    "week": {"type": "integer"},
+    "move": {"type": "number", "exclusiveMinimum": 0},
+    "unit_price": {"type": "number", "exclusiveMinimum": 0},
+    "revenue": {"type": "number", "minimum": 0},
+    "gross_margin_rate": {"type": "number"},
+    "sale": {"type": ["string", "null"]},
+    "promotion_observed": {"type": "boolean"}
+  }
+}

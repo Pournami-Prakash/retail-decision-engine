@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Promotion decision request",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["category", "store", "upc", "discount", "replacement_unit_cost", "supplier_funding_per_unit", "inventory_available"],
+  "properties": {
+    "category": {"type": "string", "minLength": 1},
+    "store": {"type": "integer", "minimum": 1},
+    "upc": {"type": ["integer", "string"]},
+    "discount": {"type": "number", "exclusiveMinimum": 0, "exclusiveMaximum": 1},
+    "replacement_unit_cost": {"type": "number", "minimum": 0},
+    "supplier_funding_per_unit": {"type": "number", "minimum": 0},
+    "inventory_available": {"type": "boolean"}
+  }
+}

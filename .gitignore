@@ -1,0 +1,24 @@
+.DS_Store
+.venv/
+__pycache__/
+.pytest_cache/
+*.py[cod]
+*.egg-info/
+
+# Chicago Booth data must be downloaded from the official source.
+data/raw/*
+!data/raw/.gitkeep
+data/interim/*
+!data/interim/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+
+# Generated analytical outputs.
+artifacts/*
+!artifacts/.gitkeep
+
+# Generated dashboard snapshot and local build logs.
+# The snapshot is derived from restricted source data and may contain local paths.
+dashboard/data.json
+docker-build.log
+.impeccable.md

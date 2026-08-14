@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Retail price-response, causal audit, and promotion decision console.">
+  <title>Retail Promotion Decision Console</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=5">
+</head>
+<body data-mode="executive">
+  <a class="skip-link" href="#main-content">Skip to dashboard</a>
+
+  <header class="app-header">
+    <a class="brand" href="#decision" aria-label="Retail Promotion Decision Console home">
+      <span class="brand-mark" aria-hidden="true">RD</span>
+      <span><strong>Promotion Decision Console</strong><small>Dominick's scanner panel</small></span>
+    </a>
+    <nav class="section-nav" aria-label="Dashboard sections">
+      <a href="#decision">Decision</a>
+      <a href="#evidence">Evidence</a>
+      <a href="#causal">Causal audit</a>
+      <a href="#health">Model health</a>
+      <a href="#replay">Replay</a>
+      <a href="#response">Price response</a>
+      <a href="#scenario">Scenario</a>
+    </nav>
+    <div class="mode-switch" role="group" aria-label="Detail level">
+      <button type="button" class="mode-button active" data-mode="executive" aria-pressed="true">Executive</button>
+      <button type="button" class="mode-button" data-mode="technical" aria-pressed="false">Technical</button>
+    </div>
+  </header>
+
+  <main id="main-content" class="dashboard-shell">
+    <section class="decision-panel" id="decision" aria-labelledby="decision-title">
+      <div class="decision-copy">
+        <div class="context-line">
+          <span>Cereal cohort</span>
+          <span>Store-product-week</span>
+          <span>Historical policy review</span>
+        </div>
+        <div class="decision-status"><span aria-hidden="true">No action</span><strong id="gate-status">Downside margin screen</strong></div>
+        <h1 id="decision-title">Price-only promotion decision</h1>
+      </div>
+      <dl class="decision-facts" aria-label="Decision thresholds">
+        <div><dt>Margin-safe actions</dt><dd id="margin-actions">—</dd><small>base capacity</small></div>
+        <div><dt>Overlap retained</dt><dd id="overlap">—</dd><small>target ≥ 80%</small></div>
+        <div><dt>90% interval coverage</dt><dd id="coverage">—</dd><small>target 90%</small></div>
+      </dl>
+    </section>
+
+    <section class="kpi-strip" aria-label="Key evidence">
+      <article><span>Cohort price response</span><strong id="elasticity-kpi">—</strong><small>conditional association</small></article>
+      <article><span>Revenue objective</span><strong id="revenue-kpi">—</strong><small>modeled incremental revenue</small></article>
+      <article class="risk-metric"><span>Same revenue scenario</span><strong id="margin-kpi">—</strong><small>modeled contribution margin</small></article>
+      <article><span>Recorded sale events</span><strong id="events-kpi">—</strong><small>isolated episodes</small></article>
+    </section>
+
+    <section class="release-panel" id="evidence" aria-labelledby="release-title">
+      <header class="release-header">
+        <div><span class="section-kicker">Historical research</span><h2 id="release-title">Evidence completed</h2></div>
+        <strong id="release-status">Observed · modeled · audited</strong>
+      </header>
+      <ol class="release-rail" id="release-rail"></ol>
+      <div class="intake-register technical-only" id="intake-register" aria-label="External release checks"></div>
+    </section>
+
+    <div class="workspace-grid">
+      <div class="analysis-column">
+        <section class="panel economics-panel" aria-labelledby="economics-title">
+          <header class="panel-header">
+            <div><span class="section-kicker">Optimization</span><h2 id="economics-title">Revenue and margin objectives</h2></div>
+          </header>
+          <div id="tradeoff-chart" class="tradeoff-chart" role="img" aria-label="Comparison of incremental revenue and contribution margin"></div>
+          <div id="capacity-grid" class="capacity-grid" aria-label="Capacity sensitivity"></div>
+          <div class="method-callout technical-only">
+            <strong>Break-even condition</strong>
+            <span>|elasticity| &gt; 1 / gross margin rate</span>
+          </div>
+        </section>
+
+        <section class="panel" id="causal" aria-labelledby="causal-title">
+          <header class="panel-header">
+            <div><span class="section-kicker">Causal admission gate</span><h2 id="causal-title">Admission diagnostics</h2></div>
+          </header>
+          <div class="gate-layout">
+            <ol class="gate-list" id="gate-list"></ol>
+            <aside class="audit-stat" aria-label="Exploratory adjusted contrast">
+              <span>Adjusted contrast</span>
+              <strong id="aipw-effect">—</strong>
+              <small>Recorded S vs unlabeled</small>
+              <p>Admission status: withheld</p>
+            </aside>
+          </div>
+          <div class="balance technical-only">
+            <h3>Balance after weighting</h3>
+            <div id="balance-chart" class="balance-chart"></div>
+          </div>
+        </section>
+
+        <section class="panel" id="health" aria-labelledby="health-title">
+          <header class="panel-header">
+            <div><span class="section-kicker">Temporal holdout</span><h2 id="health-title">Predictive interval calibration</h2></div>
+            <span class="status-chip">Recalibration required</span>
+          </header>
+          <div class="health-grid">
+            <div class="calibration-panel">
+              <h3>Predictive interval coverage</h3>
+              <div id="calibration-bars"></div>
+              <p class="chart-note">Markers show nominal coverage; bars show empirical coverage.</p>
+            </div>
+            <div class="health-notes">
+              <article><strong>Prior sensitivity</strong><p id="sensitivity-copy">—</p></article>
+              <article><strong>Temporal recalibration</strong><p id="conformal-copy">—</p></article>
+            </div>
+          </div>
+          <div class="product-health technical-only">
+            <h3>Product-level calibration</h3>
+            <div class="table-wrap"><table id="health-table"><thead><tr><th>Product</th><th>90% coverage</th><th>Mean PIT</th><th>Log MAE</th></tr></thead><tbody></tbody></table></div>
+          </div>
+        </section>
+
+        <section class="panel replay-panel" id="replay" aria-labelledby="replay-title">
+          <header class="panel-header">
+            <div><span class="section-kicker">Untouched holdout</span><h2 id="replay-title">Historical shadow replay</h2></div>
+            <span class="status-chip" id="replay-status">—</span>
+          </header>
+          <div class="replay-summary" id="replay-summary"></div>
+          <div class="replay-timeline" id="replay-timeline" role="img" aria-label="Monitoring status by historical replay week"></div>
+          <div class="replay-risk" id="replay-risk"></div>
+        </section>
+      </div>
+
+      <aside class="panel scenario-panel" id="scenario" aria-labelledby="scenario-title">
+        <header class="panel-header compact">
+          <div><span class="section-kicker">Scenario workspace</span><h2 id="scenario-title">Promotion candidate</h2></div>
+        </header>
+        <p class="scenario-scope">Price-cut only · associational · accounting-cost proxy</p>
+        <form class="scenario-form" id="scenario-form">
+          <label for="product-select">Product</label><select id="product-select"></select>
+          <label for="store-select">Store</label><select id="store-select"></select>
+          <label for="discount-select">Discount</label><select id="discount-select"></select>
+        </form>
+        <output class="scenario-output" id="scenario-output" aria-live="polite">
+          <div><span>Expected units</span><strong id="scenario-units">—</strong></div>
+          <div><span>Incremental revenue</span><strong id="scenario-revenue">—</strong></div>
+          <div><span>Incremental margin</span><strong id="scenario-margin">—</strong></div>
+          <div><span>Positive-margin probability</span><strong id="scenario-probability">—</strong></div>
+        </output>
+        <div class="inline-warning" role="note"><span aria-hidden="true">!</span><p>Unavailable inputs: display, loyalty, basket, substitution, supplier funding, and replacement cost.</p></div>
+        <div class="funding-note"><strong>Supplier funding sensitivity</strong><p id="funding-copy">—</p></div>
+      </aside>
+    </div>
+
+    <section class="panel wide-panel" id="response" aria-labelledby="response-title">
+      <header class="panel-header">
+        <div><span class="section-kicker">Cross-classified hierarchy</span><h2 id="response-title">Product price-response estimates</h2></div>
+      </header>
+      <div id="elasticity-chart" class="interval-chart" role="img" aria-label="Product price-response estimates and 90 percent intervals"></div>
+      <details class="method-note technical-only">
+        <summary>Model specification</summary>
+        <p>Robust Student-t model with product elasticity pooling, product and store intercepts, promotion controls, annual seasonality, trend, and centered within-panel price.</p>
+      </details>
+    </section>
+
+    <section class="panel wide-panel" id="events" aria-labelledby="event-title">
+      <header class="panel-header">
+        <div><span class="section-kicker">Event-study diagnostics</span><h2 id="event-title">Promotion event study</h2></div>
+      </header>
+      <div class="event-layout">
+        <div class="event-callouts">
+          <div><span>Event-week units</span><strong id="event-units">—</strong></div>
+          <div><span>Event-week price</span><strong id="event-price">—</strong></div>
+          <div><span>Observed margin dollars</span><strong id="event-margin">—</strong></div>
+          <div><span>Week −1 pretrend</span><strong id="event-pretrend">—</strong></div>
+        </div>
+        <div id="event-chart" class="event-chart" role="img" aria-label="Unit response around isolated sale events"></div>
+      </div>
+      <div class="evidence-note"><strong>Promotion-end sensitivity</strong><p id="payback-copy">—</p></div>
+    </section>
+
+    <section class="technical-appendix technical-only" aria-labelledby="appendix-title">
+      <header class="appendix-header"><span class="section-kicker">Technical mode</span><h2 id="appendix-title">Data and operational evidence</h2></header>
+      <div class="appendix-grid">
+        <section class="panel" id="data-foundation" aria-labelledby="data-foundation-title">
+          <header class="panel-header compact"><div><h3 id="data-foundation-title">Relational foundation</h3></div></header>
+          <div id="data-foundation-grid" class="metric-grid"></div>
+          <div id="sql-checks" class="sql-checks"></div>
+        </section>
+        <section class="panel" id="multicategory" aria-labelledby="multicategory-title">
+          <header class="panel-header compact"><div><h3 id="multicategory-title">Category pooling</h3></div></header>
+          <div id="multicategory-content" class="empty-state">Rebuild dashboard data to populate the multi-category model.</div>
+          <p id="multicategory-health" class="method-note"></p>
+        </section>
+        <section class="panel" id="operations" aria-labelledby="operations-title">
+          <header class="panel-header compact"><div><h3 id="operations-title">Operational controls</h3></div></header>
+          <div id="operations-grid" class="metric-grid"></div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Independent academic research using University of Chicago Booth Kilts Center Dominick's data. Scenarios are not production recommendations.</p>
+    <p id="generated-at">Data snapshot: —</p>
+  </footer>
+  <div class="error-banner" id="error-banner" role="alert" hidden></div>
+  <script src="app.js?v=5" defer></script>
+</body>
+</html>

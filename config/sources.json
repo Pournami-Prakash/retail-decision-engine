@@ -1,0 +1,18 @@
+{
+  "cereal": {
+    "code": "cer",
+    "upc_url": "https://www.chicagobooth.edu/-/media/enterprise/centers/kilts/datasets/dominicks-dataset/upc_csv-files/upccer.csv",
+    "movement_url": "https://www.chicagobooth.edu/-/media/enterprise/centers/kilts/datasets/dominicks-dataset/movement_csv-files/wcer.zip"
+  },
+  "canned_soup": {
+    "code": "cso",
+    "upc_url": "https://www.chicagobooth.edu/-/media/enterprise/centers/kilts/datasets/dominicks-dataset/upc_csv-files/upccso.csv",
+    "movement_url": "https://www.chicagobooth.edu/-/media/enterprise/centers/kilts/datasets/dominicks-dataset/movement_csv-files/wcso.zip"
+  },
+  "soft_drinks": {
+    "code": "sdr",
+    "upc_url": "https://www.chicagobooth.edu/-/media/enterprise/centers/kilts/datasets/dominicks-dataset/upc_csv-files/upcsdr.csv",
+    "movement_url": "https://www.chicagobooth.edu/-/media/enterprise/centers/kilts/datasets/dominicks-dataset/movement_csv-files/wsdr.zip"
+  }
+}
+
