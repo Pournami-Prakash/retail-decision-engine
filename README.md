@@ -80,6 +80,21 @@ evaluation, causal gate, scenario assumptions, and release criteria. The
 [external validation note](docs/external_validation.md) separates local findings
 from published evidence.
 
+## Reproduce the checks
+
+The repository includes synthetic and aggregate artifacts needed to exercise
+the release gates without redistributing the licensed scanner data:
+
+```bash
+python -m venv .venv
+.venv/bin/python -m pip install -e ".[modeling,dev]"
+make verify
+```
+
+`make verify` runs linting, unit tests, shadow replay, release evidence,
+operational checks, dashboard-data generation, compilation, and contract
+validation.
+
 ## Data use
 
 [Dominick's data](https://www.chicagobooth.edu/research/kilts/research-data/dominicks)
